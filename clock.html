@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+    <style>
+        #clock {
+            width: 200px;
+            height: 320px;
+        }
+    </style>
+</head>
+
+<body> 
+    <svg id="clock" viewBox="0 0 100 100">
+        <circle id="clock-face" cx="50" cy="50" r="45" fill="#fff" stroke="#000" stroke-width="2" />
+        <line id="hour" x1="50" y1="50" x2="50" y2="25" stroke="#000" stroke-width="3" />
+        <line id="minute" x1="50" y1="50" x2="50" y2="15" stroke="#000" stroke-width="2" />
+        <line id="second" x1="50" y1="50" x2="50" y2="10" stroke="#f00" stroke-width="1" />
+
+        <text x="22" y="0" id="dateTime"></text>
+    </svg>
+</body>
+
+<script>
+    const second = document.getElementById('second')
+    const minutes = document.getElementById('minute')
+    const hours = document.getElementById('hour')
+    const dateTime = document.getElementById('dateTime')
+
+    // for (let i = 1; i <= 60; ++i) {
+        setInterval(function () {
+            const date = new Date()
+
+            let realSeconds = date.getSeconds()
+            let realMinutes = date.getMinutes()
+            let realHours = date.getHours()
+
+            second.setAttribute("transform", `rotate(${realSeconds * 6} 50 50)`);
+            minutes.setAttribute("transform", `rotate(${realMinutes * 6} 50 50)`);
+            hours.setAttribute("transform", `rotate(${realHours * 6} 50 50)`);
+
+            dateTime.innerHTML = `${realHours}:${realMinutes}:${realSeconds}`
+
+            //console.log(realSeconds)
+            //console.log(realMinutes)
+            //console.log(realHours)
+        }, 1000);
+    // }
+
+</script>
+
+</html>
